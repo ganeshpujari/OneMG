@@ -6,8 +6,9 @@ from datetime  import datetime
 
 def export_xls(modeladmin, request, queryset):
     import xlwt
+    fileName = datetime.now().strftime("%d_%B_%Y_%I_%M_%s")
     response = HttpResponse()
-    response['Content-Disposition'] = 'attachment; filename=mymodel.xls'
+    response['Content-Disposition'] = 'attachment; filename=' + fileName + '.xls'
     wb = xlwt.Workbook(encoding='utf-8')
     fileName=datetime.now().strftime("%d_%B_%Y_%I_%M_%s")
     ws = wb.add_sheet(fileName)
