@@ -114,12 +114,13 @@ class Uploads(models.Model):
             for n in range(mgsh.nrows):
                 try:
                     if n != 0:
-                        one_mg_inv_no = str(mgsh.cell_value(n, 5)).upper().replace("MK", "").replace("-", "").replace(" ", "")
-                        settled=str(mgsh.cell_value(n, 14)).lower()
+
+                        one_mg_inv_no = str(mgsh.cell_value(n, 4)).upper().replace("MK", "").replace("-", "").replace(" ", "")
+                        settled=str(mgsh.cell_value(n, 13)).lower()
                         is_settled = True if settled=="settled" else False
-                        amount_settledRaw=str((mgsh.cell_value(n, 15)))
+                        amount_settledRaw=str((mgsh.cell_value(n, 14)))
                         settled_amount=float(amount_settledRaw) if len(amount_settledRaw)>0 else 0
-                        settled_date=str((mgsh.cell_value(n, 16)))
+                        settled_date=str((mgsh.cell_value(n, 15)))
                         update_one_mg_data(int(one_mg_inv_no),is_settled,settled_amount,settled_date)
                 except Exception, e:
                     raise (e)
